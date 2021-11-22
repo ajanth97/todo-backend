@@ -1,5 +1,4 @@
 const { getUserByIdPromise } = require("../utils/getUser");
-const Todo = require("../models/todo-model");
 
 getTodos = (req, res) => {
   const { id } = req.user;
@@ -44,14 +43,7 @@ addTodo = (req, res) => {
   getUserByIdPromise(id).then(
     (user) => {
       const body = req.body;
-      const todo = new Todo(body);
-      if (!todo) {
-        return res.status(400).json({
-          success: false,
-          message: "Error creating new Todo from request body",
-        });
-      }
-      user.todos = [todo];
+      user.todos = [body];
       user
         .save()
         .then(() => {

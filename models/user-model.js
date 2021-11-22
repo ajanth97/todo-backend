@@ -8,7 +8,7 @@ const User = new Schema(
     password: { type: String, required: true },
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
-    todos: [Todo],
+    todos: [{ id: String, text: String, checked: Boolean }],
   },
   { timestamps: true }
 );
