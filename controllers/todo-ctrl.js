@@ -43,12 +43,11 @@ addTodo = (req, res) => {
   getUserByIdPromise(id).then(
     (user) => {
       const body = req.body;
-      console.log(user);
       user.todos.push(body);
-      console.log(user);
       user
         .save()
         .then(() => {
+          console.log("Added todo");
           return res.status(201).json({
             todo: todo,
           });
