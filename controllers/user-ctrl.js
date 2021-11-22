@@ -29,7 +29,7 @@ createUser = (req, res) => {
     if (!user) {
       return res.status(400).json({
         success: false,
-        error: err,
+        message: "Error creating new user from request body",
       });
     }
 
@@ -45,7 +45,7 @@ createUser = (req, res) => {
       })
       .catch((error) => {
         return res.status(400).json({
-          error,
+          error: error,
           message: "User not created!",
         });
       });

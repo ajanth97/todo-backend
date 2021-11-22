@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const Todo = require("./todo-model");
 
 const User = new Schema(
   {
@@ -7,7 +8,7 @@ const User = new Schema(
     password: { type: String, required: true },
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
-    todos: { type: Array, required: false },
+    todos: [Todo],
   },
   { timestamps: true }
 );
