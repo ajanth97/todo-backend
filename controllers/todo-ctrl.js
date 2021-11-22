@@ -43,7 +43,9 @@ addTodo = (req, res) => {
   getUserByIdPromise(id).then(
     (user) => {
       const body = req.body;
+      console.log(user);
       user.todos = [body];
+      console.log(user);
       user
         .save()
         .then(() => {
