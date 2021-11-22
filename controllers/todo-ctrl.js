@@ -44,7 +44,7 @@ addTodo = (req, res) => {
     (user) => {
       const body = req.body;
       console.log(user);
-      user.todos = [body];
+      user.todos.push(body);
       console.log(user);
       user
         .save()
