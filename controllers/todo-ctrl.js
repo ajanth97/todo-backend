@@ -71,7 +71,53 @@ addTodo = (req, res) => {
   );
 };
 
+deleteTodo = (req, res) => {
+  const { id } = req.user;
+  //id cannot be undedined since this route is protected, handling an edge case
+  //This is not the user's fault
+  if (id === undefined) {
+    const errorMessage = "Decoded token is undefined";
+    console.error(errorMessage);
+    return res.status(500).json({
+      message: errorMessage,
+    });
+  }
+  getUserByIdPromise(id).then(
+    (user) => {
+      const body = req.body;
+      const todos = user.todos;
+      const deleteTodoId = body.id;
+      const filteredTodos = todos.filter((todo) => todo.id !== deleteTodoId);
+      user.todos = filteredTodos;
+      user
+        .save()
+        .then(() => {
+          console.log("Deleted todo");
+          return res.status(200).json({
+            todo: body,
+          });
+        })
+        .catch((error) => {
+          console.log("Failed to delete todo");
+          return res.status(500).json({
+            error: error,
+            message: "Unable to delete todo",
+          });
+        });
+    },
+    () => {
+      //This is also not the user's fault
+      const errorMessage = "Error getting Id !";
+      console.error(errorMessage);
+      return res.status(500).json({
+        message: errorMessage,
+      });
+    }
+  );
+};
+
 module.exports = {
   getTodos,
   addTodo,
+  deleteTodo,
 };
