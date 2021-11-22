@@ -92,7 +92,6 @@ deleteTodo = (req, res) => {
           arr.splice(index, 1);
         }
       });
-      console.log(user.todos);
       user
         .save()
         .then(() => {
