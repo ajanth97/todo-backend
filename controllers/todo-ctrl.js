@@ -85,13 +85,10 @@ deleteTodo = (req, res) => {
   getUserByIdPromise(id).then(
     (user) => {
       const body = req.body;
+      const todos = user.todos;
       const deleteTodoId = body.id;
-      user.todos.forEach((todo, index, arr) => {
-        if (todo.id === deleteTodoId) {
-          console.log(todo);
-          arr.splice(index, 1);
-        }
-      });
+      const filteredTodos = todos.filter((todo) => todo.id !== deleteTodoId);
+      user.todos = filteredTodos;
       user
         .save()
         .then(() => {
