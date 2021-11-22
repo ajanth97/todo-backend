@@ -49,10 +49,11 @@ addTodo = (req, res) => {
         .then(() => {
           console.log("Added todo");
           return res.status(201).json({
-            todo: todo,
+            todo: body,
           });
         })
         .catch((error) => {
+          console.log("Failed to add todo");
           return res.status(500).json({
             error: error,
             message: "Unable to add todo",
