@@ -88,6 +88,7 @@ deleteTodo = (req, res) => {
       const deleteTodoId = body.id;
       user.todos.forEach((todo, index, arr) => {
         if (todo.id === deleteTodoId) {
+          console.log(todo);
           arr.splice(index, 1);
         }
       });
