@@ -1,5 +1,11 @@
 # Todo Backend
 
+This project is currently hosted in the following link :
+
+https://todo-project-backend.herokuapp.com/api/
+
+It is used as the backend in the following frontend application [here](https://github.com/ajanth97/todo-frontend)
+
 ## Setting up the development enviroment
 
 1. Clone this repo
